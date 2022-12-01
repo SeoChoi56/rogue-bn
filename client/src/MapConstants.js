@@ -11,7 +11,7 @@ export const MAP_TILE_IMAGES = {
     1: 'assets/MapTiles/enemygrid.png'
 }
 
-export const Battlegrid = [
+export const BATTLEGRID = [
     [
         [0, 0, 0, 1, 1, 1],
         [0, 0, 0, 1, 1, 1],
