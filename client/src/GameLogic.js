@@ -4,37 +4,63 @@ import { TILE_SIZE } from './MapConstants';
 
 function GameLogic({ player, playerXPos, playerYPos, updatePlayerXPos, updatePlayerYPos }) {
 
-
     //Handles the key press 
     const handleKeyPress = useCallback((event) => {
         handleKey(event);
     }, []);
 
-    function moveUp(value) {
-        return value - (TILE_SIZE)
-    }
-    //Handles the action with the corresponding key event 
+    //Handles Player Actions 
     const handleKey = (e) => {
         // d = 68
         // w = 87
         // s = 83
         // a = 65
+        // space = 32
 
+        console.log(e.keyCode)
+        //handle movement
         switch (e.keyCode) {
             case 87:
-                updatePlayerYPos(playerYPos => playerYPos - TILE_SIZE)
+                updatePlayerYPos(playerYPos => {
+                    if (playerYPos === 0) {
+                        return playerYPos 
+                    }else {
+                        return playerYPos - TILE_SIZE
+                    }})
                 break;
             case 83:
-                updatePlayerYPos(playerYPos => playerYPos + TILE_SIZE)
+                updatePlayerYPos(playerYPos => {
+                    if (playerYPos === 256) {
+                        return playerYPos 
+                    }else {
+                        return playerYPos + TILE_SIZE
+                    }})
                 break;
             case 68:
-                updatePlayerXPos(playerXPos => playerXPos + TILE_SIZE)
+                updatePlayerXPos(playerXPos => {
+                    if (playerXPos === 256) {
+                        return playerXPos 
+                    }else {
+                        return playerXPos + TILE_SIZE
+                    }})
                 break;
             case 65:
-                updatePlayerXPos(playerXPos => playerXPos - TILE_SIZE)
+                updatePlayerXPos(playerXPos => {
+                    if (playerXPos === 0) {
+                        return playerXPos 
+                    }else {
+                        return playerXPos - TILE_SIZE
+                    }})
                 break;
         }
+
+        if (e.keyCode === 32) {
+            console.log("mega attack")
+        }
+
     }
+
+
 
     useEffect(() => {
         // attach the event listener
